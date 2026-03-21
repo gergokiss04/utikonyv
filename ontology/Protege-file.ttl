@@ -1,0 +1,684 @@
+@prefix : <http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/> .
+
+<http://www.pelda.hu/intelligens-utikonyv> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.pelda.hu/intelligens-utikonyv#reszeAnnak
+:reszeAnnak rdf:type owl:ObjectProperty ,
+                     owl:TransitiveProperty ;
+            rdfs:domain :FoldrajziElhelyezkedes ;
+            rdfs:range :FoldrajziElhelyezkedes .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#talalhato
+:talalhato rdf:type owl:ObjectProperty ;
+           owl:inverseOf :vanHelyszine ;
+           rdfs:domain :Helyszin ;
+           rdfs:range :Telepules .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#vanHelyszine
+:vanHelyszine rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.pelda.hu/intelligens-utikonyv#leiras
+:leiras rdf:type owl:DatatypeProperty .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#nev
+:nev rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.pelda.hu/intelligens-utikonyv#Etterem
+:Etterem rdf:type owl:Class ;
+         rdfs:subClassOf :Szolgaltatas .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#FoldrajziElhelyezkedes
+:FoldrajziElhelyezkedes rdf:type owl:Class .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Helyszin
+:Helyszin rdf:type owl:Class .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Latnivalo
+:Latnivalo rdf:type owl:Class ;
+           rdfs:subClassOf :Helyszin .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Muemlek
+:Muemlek rdf:type owl:Class ;
+         rdfs:subClassOf :Latnivalo .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Muzeum
+:Muzeum rdf:type owl:Class ;
+        rdfs:subClassOf :Latnivalo .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Szallas
+:Szallas rdf:type owl:Class ;
+         rdfs:subClassOf :Szolgaltatas .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Szolgaltatas
+:Szolgaltatas rdf:type owl:Class ;
+              rdfs:subClassOf :Helyszin .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Telepules
+:Telepules rdf:type owl:Class ;
+           rdfs:subClassOf :FoldrajziElhelyezkedes .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Varmegye
+:Varmegye rdf:type owl:Class ;
+          rdfs:subClassOf :FoldrajziElhelyezkedes .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.pelda.hu/intelligens-utikonyv#Bacs_Kiskun_varmegye
+:Bacs_Kiskun_varmegye rdf:type owl:NamedIndividual ,
+                               :Varmegye ;
+                      :nev "Bács-Kiskun vármegye" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Balassagyarmat
+:Balassagyarmat rdf:type owl:NamedIndividual ,
+                         :Telepules ;
+                :reszeAnnak :Nograd_varmegye ;
+                :nev "Balassagyarmat" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Bambara_Hotel
+:Bambara_Hotel rdf:type owl:NamedIndividual ,
+                        :Szallas ;
+               :talalhato :Felsotarkany ;
+               :leiras "Egyedülálló afrikai tematikájú luxusszálloda a bükki erdők ölelésében, különleges wellness élményekkel." ;
+               :nev "Bambara Hotel" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Banyamuzeum
+:Banyamuzeum rdf:type owl:NamedIndividual ,
+                      :Muzeum ;
+             :talalhato :Salgotarjan ;
+             :leiras "Magyarország első föld alatti bányamúzeuma, amely egy valódi lejtősaknát mutat be a látogatóknak." ;
+             :nev "Bányamúzeum" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Baranya_varmegye
+:Baranya_varmegye rdf:type owl:NamedIndividual ,
+                           :Varmegye ;
+                  :nev "Baranya vármegye" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Bekes_varmegye
+:Bekes_varmegye rdf:type owl:NamedIndividual ,
+                         :Varmegye ;
+                :nev "Békés vármegye" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#BoriMami
+:BoriMami rdf:type owl:NamedIndividual ,
+                   :Etterem ;
+          :talalhato :Gyongyos ;
+          :leiras "Országos hírű gasztronómiai találkozóhely a város szívében, ahol a hagyományos alapanyagokat modern stílusban tálalják." ;
+          :nev "BoriMami" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Borsod_Abauj_Zemplen_varmegye
+:Borsod_Abauj_Zemplen_varmegye rdf:type owl:NamedIndividual ,
+                                        :Varmegye ;
+                               :nev "Borsod-Abaúj-Zemplén vármegye" ,
+                                    "Herman Ottó Múzeum" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Bunbano_Szent_Maria_Magdolna_Templom
+:Bunbano_Szent_Maria_Magdolna_Templom rdf:type owl:NamedIndividual ,
+                                               :Muemlek ;
+                                      :talalhato :Felsotarkany ;
+                                      :leiras "A barokk templomot 1785-90 között építtette Eszterházy Károly. Az oltárokat 1793-ra készítette el Giacomo és Giovanni Adami, kőszobrait Mózer József faragta." ;
+                                      :nev "Bűnbánó Szent Mária Magdolna Templom" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Castellum_Hotel
+:Castellum_Hotel rdf:type owl:NamedIndividual ,
+                          :Szallas ;
+                 :talalhato :Holloko ;
+                 :leiras "Modern, minden igényt kielégítő wellness szálloda, amely tökéletesen illeszkedik a történelmi környezetbe." ;
+                 :nev "Castellum Hotel" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Ciszterci_Monostor
+:Ciszterci_Monostor rdf:type owl:NamedIndividual ,
+                             :Muemlek ;
+                    :talalhato :Paszto ;
+                    :leiras "Középkori eredetű egyházi épületegyüttes, amely a város történelmi központjának legértékesebb része." ;
+                    :nev "Ciszterci Monostor" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Csongrad_Csanad_varmegye
+:Csongrad_Csanad_varmegye rdf:type owl:NamedIndividual ,
+                                   :Varmegye ;
+                          :nev "Csongrád-Csanád vármegye" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Diosgyori_Var
+:Diosgyori_Var rdf:type owl:NamedIndividual ,
+                        :Muemlek ;
+               :talalhato :Miskolc ;
+               :leiras "Középkori lovagvár, amely a királynék jegyajándékaként híresült el a történelemben." ;
+               :nev "Diósgyőri Vár" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Edeleny
+:Edeleny rdf:type owl:NamedIndividual ,
+                  :Telepules ;
+         :reszeAnnak :Borsod_Abauj_Zemplen_varmegye ;
+         :nev "Edelény" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Edelenyi_Kastelysziget
+:Edelenyi_Kastelysziget rdf:type owl:NamedIndividual ,
+                                 :Muemlek ;
+                        :talalhato :Edeleny ;
+                        :leiras "Magyarország egyik legnagyobb barokk kastélya, amely egy mesterséges szigeten fekszik a Bódva folyó ölelésében." ;
+                        :nev "Edelényi Kastélysziget" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Edelenyi_Vendeghaz
+:Edelenyi_Vendeghaz rdf:type owl:NamedIndividual ,
+                             :Szallas ;
+                    :talalhato :Edeleny ;
+                    :leiras "Családias hangulatú szálláshely a kastély közelében, ideális pihenőhely a környék felfedezéséhez." ;
+                    :nev "Edelényi Vendégház" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Eger
+:Eger rdf:type owl:NamedIndividual ,
+               :Telepules ;
+      :reszeAnnak :Heves_varmegye ;
+      :nev "Eger" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Egri_Var
+:Egri_Var rdf:type owl:NamedIndividual ,
+                   :Muemlek ;
+          :talalhato :Eger ;
+          :leiras "Az 1552-es hősies várvédelem helyszíne, nemzeti történelmünk egyik legfontosabb jelképe." ;
+          :nev "Egri Vár" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Evangelikus_Templom
+:Evangelikus_Templom rdf:type owl:NamedIndividual ,
+                              :Muemlek ;
+                     :talalhato :Balassagyarmat ;
+                     :leiras "Az egykori vármegyei vesztőhely dombjára 1785-ben kezdték építeni a barokk stílusú templomot, melyet egy évvel később, 1786. november hatodikán fel is szenteltek." ;
+                     :nev "Evangélikus Templom" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Fakanalas_Fogado
+:Fakanalas_Fogado rdf:type owl:NamedIndividual ,
+                           :Szallas ;
+                  :talalhato :Paszto ;
+                  :leiras "Hangulatos szálláshely a Mátrához közel." ;
+                  :nev "Fakanalas Fogadó" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Falumuzeum
+:Falumuzeum rdf:type owl:NamedIndividual ,
+                     :Muzeum ;
+            :talalhato :Holloko ;
+            :leiras "Az ófalu központjában található tájház, amely egy 20. század eleji palóc parasztcsalád életmódját mutatja be." ;
+            :nev "Falumúzeum" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Fejer_varmegye
+:Fejer_varmegye rdf:type owl:NamedIndividual ,
+                         :Varmegye ;
+                :nev "Fejér vármegye" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Fekete_Barany_Etterem
+:Fekete_Barany_Etterem rdf:type owl:NamedIndividual ,
+                                :Etterem ;
+                       :talalhato :Salgotarjan ;
+                       :leiras "Salgótarján kedvelt találkozóhelye, amely barátságos környezetben kínál modern fogásokat." ;
+                       :nev "Fekete Bárány Étterem" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Felsotarkany
+:Felsotarkany rdf:type owl:NamedIndividual ,
+                       :Telepules ;
+              :reszeAnnak :Heves_varmegye ;
+              :nev "Felsőtárkány" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Galcsik_Fogado
+:Galcsik_Fogado rdf:type owl:NamedIndividual ,
+                         :Szallas ;
+                :talalhato :Salgotarjan ;
+                :leiras "A városközpontban elhelyezkedő kényelmes szálloda, ideális kiindulópont a nógrádi túrákhoz." ;
+                :nev "Galcsik Fogadó" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Grassalkovich_Kastely
+:Grassalkovich_Kastely rdf:type owl:NamedIndividual ,
+                                :Muemlek ;
+                       :talalhato :Hatvan ;
+                       :leiras "Impozáns barokk kastély, amely a város jelképe és egyben a magyar vadászati kultúra egyik központja." ;
+                       :nev "Grassalkovich Kastély" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Gyongyos
+:Gyongyos rdf:type owl:NamedIndividual ,
+                   :Telepules ;
+          :reszeAnnak :Heves_varmegye ;
+          :nev "Gyöngyös" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Gyor_Moson_Sopron_varmegye
+:Gyor_Moson_Sopron_varmegye rdf:type owl:NamedIndividual ,
+                                     :Varmegye ;
+                            :nev "Győr-Moson-Sopron vármegye" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Hadas_Varosresz
+:Hadas_Varosresz rdf:type owl:NamedIndividual ,
+                          :Muemlek ;
+                 :talalhato :Mezokovesd ;
+                 :leiras "Mezőkövesd óvárosi része, ahol a nádtetős házak őrzik a matyó népművészet és életmód hagyományait." ;
+                 :nev "Hadas Városrész" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Hajdu_Bihar_varmegye
+:Hajdu_Bihar_varmegye rdf:type owl:NamedIndividual ,
+                               :Varmegye ;
+                      :nev "Hajdú-Bihar vármegye" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Hatvan
+:Hatvan rdf:type owl:NamedIndividual ,
+                 :Telepules ;
+        :reszeAnnak :Heves_varmegye ;
+        :nev "Hatvan" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Herman_Otto_Muzeum
+:Herman_Otto_Muzeum rdf:type owl:NamedIndividual ,
+                             :Muzeum ;
+                    :talalhato :Miskolc ;
+                    :leiras "Miskolc legnagyobb múzeuma, amely világhírű pannon-tengeri őserdei leleteket is őriz." ;
+                    :nev "Herman Ottó Múzeum" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Heves_varmegye
+:Heves_varmegye rdf:type owl:NamedIndividual ,
+                         :Varmegye ;
+                :nev "Heves vármegye" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Holloko
+:Holloko rdf:type owl:NamedIndividual ,
+                  :Telepules ;
+         :reszeAnnak :Nograd_varmegye ;
+         :nev "Hollókő" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Hollokoi_Var
+:Hollokoi_Var rdf:type owl:NamedIndividual ,
+                       :Muemlek ;
+              :talalhato :Holloko ;
+              :leiras "A sziklán trónoló középkori erődítmény, amely évszázadok óta vigyázza az alatta elterülő világörökségi falut." ;
+              :nev "Hollókői Vár" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Hotel_Balneo
+:Hotel_Balneo rdf:type owl:NamedIndividual ,
+                       :Szallas ;
+              :talalhato :Mezokovesd ;
+              :leiras "Modern gyógyszálloda a Zsóry-fürdő közvetlen szomszédságában, tágas wellness részleggel." ;
+              :nev "Hotel Balneo" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Hotel_Eger_Park
+:Hotel_Eger_Park rdf:type owl:NamedIndividual ,
+                          :Szallas ;
+                 :talalhato :Eger ;
+                 :leiras "Eger patinás szállodája a belváros szívében, széleskörű wellness és konferencia szolgáltatásokkal." ;
+                 :nev "Hotel Eger Park" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Hotel_Grassalkovich
+:Hotel_Grassalkovich rdf:type owl:NamedIndividual ,
+                              :Szallas ;
+                     :talalhato :Hatvan ;
+                     :leiras "A városközpontban található kényelmes szálláshely, amely klasszikus stílusával várja az utazókat." ;
+                     :nev "Hotel Grassalkovich" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Hotel_Varkastely
+:Hotel_Varkastely rdf:type owl:NamedIndividual ,
+                           :Szallas ;
+                  :talalhato :Szerencs ;
+                  :leiras "A szerencsi vár épületegyüttesében kialakított szálloda, ahol történelmi környezetben pihenhetnek a vendégek." ;
+                  :nev "Hotel Várkastély" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Ipoly_Hotel
+:Ipoly_Hotel rdf:type owl:NamedIndividual ,
+                      :Szallas ;
+             :talalhato :Balassagyarmat ;
+             :leiras "Klasszikus stílusú szálláshely a város szívében, ideális pihenőhely a határmenti kirándulásokhoz." ;
+             :nev "Ipoly Hotel" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Jasz_Nagykun_Szolnok_varmegye
+:Jasz_Nagykun_Szolnok_varmegye rdf:type owl:NamedIndividual ,
+                                        :Varmegye ;
+                               :nev "Jász-Nagykun-Szolnok vármegye" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Kardok_Haza
+:Kardok_Haza rdf:type owl:NamedIndividual ,
+                      :Muzeum ;
+             :talalhato :Felsotarkany ;
+             :leiras "A 450 darab műtárgy az Ókortól, az 1848-as szabadságharc végéig mutatja be a különböző műves antik fegyvereket, közte 130 darab kardot." ;
+             :nev "Kardok Háza" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Kastely_Kert_Etterem
+:Kastely_Kert_Etterem rdf:type owl:NamedIndividual ,
+                               :Etterem ;
+                      :talalhato :Edeleny ;
+                      :leiras "Elegáns étterem a kastélypark szomszédságában, amely ötvözi a klasszikus és a modern ízeket." ;
+                      :nev "Kastély Kert Étterem" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Ket_Diofa_Biszto
+:Ket_Diofa_Biszto rdf:type owl:NamedIndividual ,
+                           :Etterem ;
+                  :talalhato :Felsotarkany ;
+                  :leiras "Házias ízeket és helyi vadhúsételeket kínáló hangulatos vendéglő a hegyek tövében." ;
+                  :nev "Két Diófa Bisztró" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Komarom_Esztergom_varmegye
+:Komarom_Esztergom_varmegye rdf:type owl:NamedIndividual ,
+                                     :Varmegye ;
+                            :nev "Komárom-Esztergom vármegye" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Kopcsik_Marcipania
+:Kopcsik_Marcipania rdf:type owl:NamedIndividual ,
+                             :Muzeum ;
+                    :talalhato :Eger ;
+                    :leiras "Egyedülálló marcipánmúzeum, ahol lenyűgöző cukrászati remekműveket tekinthetnek meg a látogatók." ;
+                    :nev "Kopcsik Marcipánia" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Lhuillier_Kastely_Muzeum
+:Lhuillier_Kastely_Muzeum rdf:type owl:NamedIndividual ,
+                                   :Muzeum ;
+                          :talalhato :Edeleny ;
+                          :leiras "A kastély belső tereiben berendezett kiállítás, amely különleges rokokó falfestményeiről ismert." ;
+                          :nev "L'huillier Kastély Múzeum" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Lifestyle_Hotel_Matra
+:Lifestyle_Hotel_Matra rdf:type owl:NamedIndividual ,
+                                :Szallas ;
+                       :talalhato :Gyongyos ;
+                       :leiras "A Mátra hegyei között fekvő modern wellness szálloda, amely tökéletes kiindulópont a természetjáróknak." ;
+                       :nev "Lifestyle Hotel Mátra" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Macok_Bisztro
+:Macok_Bisztro rdf:type owl:NamedIndividual ,
+                        :Etterem ;
+               :talalhato :Eger ;
+               :leiras "Stílusos étterem az egri vár tövében, ahol a hagyományos magyar konyhát ötvözik a modern eleganciával." ;
+               :nev "Macok Bisztró" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Matra_Muzeum
+:Matra_Muzeum rdf:type owl:NamedIndividual ,
+                       :Muzeum ;
+              :talalhato :Gyongyos ;
+              :leiras "Az egykori Orczy-kastélyban helyet kapó múzeum, ahol egy teljes mamutcsontváz és gazdag vadászati kiállítás látható." ;
+              :nev "Mátra Múzeum" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Matyo_Muzeum
+:Matyo_Muzeum rdf:type owl:NamedIndividual ,
+                       :Muzeum ;
+              :talalhato :Mezokovesd ;
+              :leiras "A matyó népviseletet, hímzéseket és használati tárgyakat bemutató gyűjtemény a város szívében." ;
+              :nev "Matyó Múzeum" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Mezokovesd
+:Mezokovesd rdf:type owl:NamedIndividual ,
+                     :Telepules ;
+            :reszeAnnak :Borsod_Abauj_Zemplen_varmegye ;
+            :nev "Mezőkövesd" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Miskolc
+:Miskolc rdf:type owl:NamedIndividual ,
+                  :Telepules ;
+         :reszeAnnak :Borsod_Abauj_Zemplen_varmegye ;
+         :nev "Miskolc" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Muskatli_Vendeglo
+:Muskatli_Vendeglo rdf:type owl:NamedIndividual ,
+                            :Etterem ;
+                   :talalhato :Holloko ;
+                   :leiras "Hagyományos palóc ízeket kínáló étterem az ófalu szívében, ahol megkóstolhatjuk a híres palóclevest is." ;
+                   :nev "Muskátli Vendéglő" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Nograd_varmegye
+:Nograd_varmegye rdf:type owl:NamedIndividual ,
+                          :Varmegye ;
+                 :nev "Nógrád vármegye" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Paloc_Muzeum
+:Paloc_Muzeum rdf:type owl:NamedIndividual ,
+                       :Muzeum ;
+              :talalhato :Balassagyarmat ;
+              :leiras "Nógrád vármegye leggazdagabb néprajzi gyűjteménye, ahol a palóc kultúra mindennapjait ismerhetjük meg" ;
+              :nev "Palóc Múzeum" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Palota_Szallo
+:Palota_Szallo rdf:type owl:NamedIndividual ,
+                        :Szallas ;
+               :talalhato :Miskolc ;
+               :leiras "A lillafüredi Hámori-tó partján álló neoreneszánsz kastélyszálló, az ország egyik legszebb épülete." ;
+               :nev "Palota Szálló" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Paszto
+:Paszto rdf:type owl:NamedIndividual ,
+                 :Telepules ;
+        :reszeAnnak :Nograd_varmegye ;
+        :nev "Pásztó" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Pasztoi_Muzeum
+:Pasztoi_Muzeum rdf:type owl:NamedIndividual ,
+                         :Muzeum ;
+                :talalhato :Paszto ;
+                :leiras "A barokk kolostorépületben működő múzeum, amely a középkori mezővárosi életet és a helyi ipartörténetet mutatja be." ;
+                :nev "Pásztói Múzeum" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Pest_varmegye
+:Pest_varmegye rdf:type owl:NamedIndividual ,
+                        :Varmegye ;
+               :nev "Pest vármegye" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Romkert_Bisztro
+:Romkert_Bisztro rdf:type owl:NamedIndividual ,
+                          :Etterem ;
+                 :talalhato :Paszto ;
+                 :leiras "Pásztó kedvelt gasztronómiai pontja, ahol modern köntösben kóstolhatjuk meg az ételeket." ;
+                 :nev "Romkert Bisztró" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Rozsa_Etterem
+:Rozsa_Etterem rdf:type owl:NamedIndividual ,
+                        :Etterem ;
+               :talalhato :Mezokovesd ;
+               :leiras "Hagyományos magyaros konyhát kínáló vendéglő, amely híres a matyó vendégszeretetéről." ;
+               :nev "Rózsa Étterem" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Salgo_vara
+:Salgo_vara rdf:type owl:NamedIndividual ,
+                     :Muemlek ;
+            :talalhato :Salgotarjan ;
+            :leiras "A vulkáni bazaltcsúcson trónoló középkori várrom, ahonnan páratlan kilátás nyílik a Cserhátra." ;
+            :nev "Salgó vára" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Salgotarjan
+:Salgotarjan rdf:type owl:NamedIndividual ,
+                      :Telepules ;
+             :reszeAnnak :Nograd_varmegye ;
+             :nev "Salgótarján" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Somogy_varmegye
+:Somogy_varmegye rdf:type owl:NamedIndividual ,
+                          :Varmegye ;
+                 :nev "Somogy vármegye" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Svejk_Vendeglo
+:Svejk_Vendeglo rdf:type owl:NamedIndividual ,
+                         :Etterem ;
+                :talalhato :Balassagyarmat ;
+                :leiras "Híres polgári vendéglő, amely a monarchia hangulatát idéző ételeivel és békebeli vendégszeretetével várja a látogatókat." ;
+                :nev "Svejk Vendéglő" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Szabolcs_Szatmar_Bereg_varmegye
+:Szabolcs_Szatmar_Bereg_varmegye rdf:type owl:NamedIndividual ,
+                                          :Varmegye ;
+                                 :nev "Szabolcs-Szatmár-Bereg vármegye" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Szechenyi_Zsigmond_Vadaszati_Muzeum
+:Szechenyi_Zsigmond_Vadaszati_Muzeum rdf:type owl:NamedIndividual ,
+                                              :Muzeum ;
+                                     :talalhato :Hatvan ;
+                                     :leiras "A kastély épületében működő interaktív múzeum, amely a Kárpát-medence vadfajait és a vadászat történetét mutatja be." ;
+                                     :nev "Széchenyi Zsigmond Vadászati Múzeum" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Szent_Bertalan_Templom
+:Szent_Bertalan_Templom rdf:type owl:NamedIndividual ,
+                                 :Muemlek ;
+                        :talalhato :Gyongyos ;
+                        :leiras "Gyöngyös főterén álló monumentális gótikus templom, amely az ország egyik leggazdagabb egyházi kincstárával rendelkezik." ;
+                        :nev "Szent Bertalan Templom" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Szerencs
+:Szerencs rdf:type owl:NamedIndividual ,
+                   :Telepules ;
+          :reszeAnnak :Borsod_Abauj_Zemplen_varmegye ;
+          :nev "Szerencs" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Szerencsi_Var
+:Szerencsi_Var rdf:type owl:NamedIndividual ,
+                        :Muemlek ;
+               :talalhato :Szerencs ;
+               :leiras "A Rákóczi-család egykori várkastélya, amely Hegyalja egyik legfontosabb késő reneszánsz emléke." ;
+               :nev "Szerencsi vár" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Tolna_varmegye
+:Tolna_varmegye rdf:type owl:NamedIndividual ,
+                         :Varmegye ;
+                :nev "Tolna vármegye" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Udvarhaz_Vendeglo
+:Udvarhaz_Vendeglo rdf:type owl:NamedIndividual ,
+                            :Etterem ;
+                   :talalhato :Hatvan ;
+                   :leiras "Elegáns környezetben kóstolhatók meg a magyar konyha remekei." ;
+                   :nev "Udvarház Vendéglő" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Var_Etterem
+:Var_Etterem rdf:type owl:NamedIndividual ,
+                      :Etterem ;
+             :talalhato :Szerencs ;
+             :leiras "A vár udvarán működő étterem, amely kitűnő hegyaljai borokat és tájjellegű ételeket kínál." ;
+             :nev "Vár Étterem" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Vas_varmegye
+:Vas_varmegye rdf:type owl:NamedIndividual ,
+                       :Varmegye ;
+              :nev "Vas vármegye" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Vegallomas_Bisztro
+:Vegallomas_Bisztro rdf:type owl:NamedIndividual ,
+                             :Etterem ;
+                    :talalhato :Miskolc ;
+                    :leiras "Modern, gasztronómiai élményeket kínáló bisztró Miskolc kapujában, helyi alapanyagokra építve" ;
+                    :nev "Végállomás Bisztró" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Veszprem_varmegye
+:Veszprem_varmegye rdf:type owl:NamedIndividual ,
+                            :Varmegye ;
+                   :nev "Veszprém vármegye" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Zala_varmegye
+:Zala_varmegye rdf:type owl:NamedIndividual ,
+                        :Varmegye ;
+               :nev "Zala vármegye" .
+
+
+###  http://www.pelda.hu/intelligens-utikonyv#Zempleni_Muzeum
+:Zempleni_Muzeum rdf:type owl:NamedIndividual ,
+                          :Muzeum ;
+                 :talalhato :Szerencs ;
+                 :leiras "A várban található gyűjtemény, amely híres a világviszonylatban is kiemelkedő képeslap-gyűjteményéről." ;
+                 :nev "Zempléni Múzeum" .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
