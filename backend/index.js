@@ -72,7 +72,6 @@ app.get('/api/statisztika/:megye', async (req, res) => {
             ?id rdf:type ?typeIRI .
             FILTER (?typeIRI != <http://www.w3.org/2002/07/owl#NamedIndividual>)
             
-            # Csak a legspecifikusabb típust számoljuk, hogy ne legyen többszörös számlálás
             FILTER NOT EXISTS {
                 ?id rdf:type ?subType .
                 ?subType rdfs:subClassOf ?typeIRI .
@@ -115,7 +114,6 @@ app.get('/api/kategoria/:tipus', async (req, res) => {
             ?id :talalhato ?varos .
             ?varos :nev ?varosNev .
             
-            # Ez hiányzott:
             OPTIONAL { ?id :leiras ?leiras }
             
             ${megye ? `?varos :reszeAnnak :${megye} .` : ""}
