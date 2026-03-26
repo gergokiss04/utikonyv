@@ -1,7 +1,7 @@
-import 'dotenv/config';
-import express from 'express';
-import cors from 'cors';
-import SparqlClient from 'sparql-http-client';
+import "dotenv/config";
+import express from "express";
+import cors from "cors";
+import SparqlClient from "sparql-http-client";
 
 const app = express();
 app.use(cors());
@@ -17,8 +17,8 @@ const PREFIXES = `
 `;
 
 // 1. MINDENTUDÓ VÉGPONT (Helyszínek megye szerint)
-app.get('/api/helyszinek/:megye', async (req, res) => {
-    const query = `
+app.get("/api/helyszinek/:megye", async (req, res) => {
+  const query = `
         ${PREFIXES}
         SELECT DISTINCT ?id ?nev ?leiras ?varosNev ?tipus WHERE {
             ?id :talalhato ?varos .
@@ -36,34 +36,32 @@ app.get('/api/helyszinek/:megye', async (req, res) => {
             BIND(STRAFTER(STR(?typeIRI), "untitled-ontology-2/") AS ?tipus)
         }
     `;
-    try {
-        const stream = await client.query.select(query);
-        const results = [];
-        stream.on('data', row => {
-            results.push({
-                id: row.id.value,
-                nev: row.nev.value,
-                leiras: row.leiras ? row.leiras.value : '',
-                varos: row.varosNev.value,
-                tipus: row.tipus.value
-            });
-        }
-        );
-        stream.on('end', () => res.json(results));
-        stream.on('error', err => {
-            console.error('SPARQL hiba:', err);
-            res.status(500).json({ error: 'Hiba a SPARQL lekérdezés során.' });
-        }
-        );
-    } catch (err) {
-        console.error('SPARQL kliens hiba:', err);
-        res.status(500).json({ error: 'Hiba a SPARQL kliens használata során.' });
-    }
+  try {
+    const stream = await client.query.select(query);
+    const results = [];
+    stream.on("data", (row) => {
+      results.push({
+        id: row.id.value,
+        nev: row.nev.value,
+        leiras: row.leiras ? row.leiras.value : "",
+        varos: row.varosNev.value,
+        tipus: row.tipus.value,
+      });
+    });
+    stream.on("end", () => res.json(results));
+    stream.on("error", (err) => {
+      console.error("SPARQL hiba:", err);
+      res.status(500).json({ error: "Hiba a SPARQL lekérdezés során." });
+    });
+  } catch (err) {
+    console.error("SPARQL kliens hiba:", err);
+    res.status(500).json({ error: "Hiba a SPARQL kliens használata során." });
+  }
 });
 
 // 2. STATISZTIKA (Megyei bontásban)
-app.get('/api/statisztika/:megye', async (req, res) => {
-    const query = `
+app.get("/api/statisztika/:megye", async (req, res) => {
+  const query = `
         ${PREFIXES}
         SELECT ?tipus (COUNT(?id) AS ?db) WHERE {
             ?id :talalhato ?varos .
@@ -81,32 +79,32 @@ app.get('/api/statisztika/:megye', async (req, res) => {
             BIND(STRAFTER(STR(?typeIRI), "untitled-ontology-2/") AS ?tipus)
         } GROUP BY ?tipus
     `;
-    try {
-        const stream = await client.query.select(query);
-        const results = [];
-        stream.on('data', row => {
-            results.push({
-                tipus: row.tipus.value,
-                db: parseInt(row.db.value)
-            });
-        }     );
-        stream.on('end', () => res.json(results));
-        stream.on('error', err => {
-            console.error('SPARQL hiba:', err);
-            res.status(500).json({ error: 'Hiba a SPARQL lekérdezés során.' });
-        }     );
-    } catch (err) {
-        console.error('SPARQL kliens hiba:', err);
-        res.status(500).json({ error: 'Hiba a SPARQL kliens használata során.' });
-    }
+  try {
+    const stream = await client.query.select(query);
+    const results = [];
+    stream.on("data", (row) => {
+      results.push({
+        tipus: row.tipus.value,
+        db: parseInt(row.db.value),
+      });
+    });
+    stream.on("end", () => res.json(results));
+    stream.on("error", (err) => {
+      console.error("SPARQL hiba:", err);
+      res.status(500).json({ error: "Hiba a SPARQL lekérdezés során." });
+    });
+  } catch (err) {
+    console.error("SPARQL kliens hiba:", err);
+    res.status(500).json({ error: "Hiba a SPARQL kliens használata során." });
+  }
 });
 
 // 3-6. KATEGÓRIA SPECIFIKUS VÉGPONTOK (Opcionális megye szűréssel)
-app.get('/api/kategoria/:tipus', async (req, res) => {
-    const { tipus } = req.params;
-    const { megye } = req.query;
+app.get("/api/kategoria/:tipus", async (req, res) => {
+  const { tipus } = req.params;
+  const { megye } = req.query;
 
-    const query = `
+  const query = `
         ${PREFIXES}
         SELECT DISTINCT ?id ?nev ?varosNev ?leiras WHERE {
             ?id rdf:type :${tipus} .
@@ -120,27 +118,54 @@ app.get('/api/kategoria/:tipus', async (req, res) => {
         }
     `;
 
-    try {
-        const stream = await client.query.select(query);
-        const results = [];
-        stream.on('data', row => {
-            results.push({
-                id: row.id.value,
-                nev: row.nev.value,
-                leiras: row.leiras ? row.leiras.value : '',
-                varos: row.varosNev.value,
-                tipus: tipus 
-            });
-        });
-        stream.on('end', () => res.json(results));
-        stream.on('error', err => {
-            console.error('SPARQL hiba:', err);
-            res.status(500).json({ error: 'Hiba a SPARQL lekérdezés során.' });
-        });
-    } catch (err) { 
-        console.error('SPARQL kliens hiba:', err);
-        res.status(500).json({ error: 'Hiba a SPARQL kliens használata során.' });
-    }
+  try {
+    const stream = await client.query.select(query);
+    const results = [];
+    stream.on("data", (row) => {
+      results.push({
+        id: row.id.value,
+        nev: row.nev.value,
+        leiras: row.leiras ? row.leiras.value : "",
+        varos: row.varosNev.value,
+        tipus: tipus,
+      });
+    });
+    stream.on("end", () => res.json(results));
+    stream.on("error", (err) => {
+      console.error("SPARQL hiba:", err);
+      res.status(500).json({ error: "Hiba a SPARQL lekérdezés során." });
+    });
+  } catch (err) {
+    console.error("SPARQL kliens hiba:", err);
+    res.status(500).json({ error: "Hiba a SPARQL kliens használata során." });
+  }
+});
+
+// 7. Vármegyék listázása (Sidebar-hoz)
+
+app.get("/api/megyek", async (req, res) => {
+  const query = `
+        ${PREFIXES}
+        SELECT DISTINCT ?id ?nev WHERE {
+            ?id rdf:type :Varmegye .
+            :Varmegye rdfs:subClassOf :FoldrajziElhelyezkedes .
+            ?id :nev ?nev .
+        } ORDER BY ?nev
+    `;
+
+  try {
+    const stream = await client.query.select(query);
+    const results = [];
+    stream.on("data", (row) => {
+      results.push({
+        id: row.id.value.split("#").pop(),
+        nev: row.nev.value,
+      });
+    });
+    stream.on("end", () => res.json(results));
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 const PORT = process.env.PORT || 5000;
