@@ -168,5 +168,50 @@ app.get("/api/megyek", async (req, res) => {
   }
 });
 
+//8. Intelligens ajánló
+app.get("/api/ajanlo/:megye", async (req, res) => {
+  const query = `
+        ${PREFIXES}
+        SELECT DISTINCT ?id ?nev ?varosNev ?tipus WHERE {
+            ?varos :reszeAnnak+ :${req.params.megye} .
+            ?varos :nev ?varosNev .
+
+            ?id :talalhato ?varos .
+            ?id :nev ?nev .
+
+            ?id rdf:type ?typeIRI .
+            ?typeIRI rdfs:subClassOf* :Helyszin .
+
+            FILTER (?typeIRI != <http://www.w3.org/2002/07/owl#NamedIndividual>)
+            FILTER (?typeIRI != :Helyszin) 
+
+            BIND(STRAFTER(STR(?typeIRI), "untitled-ontology-2/") AS ?tipus)
+            
+            FILTER (?tipus IN ("Muzeum", "Muemlek", "Latnivalo"))
+        } 
+        LIMIT 3
+    `;
+
+  try {
+    const stream = await client.query.select(query);
+    const results = [];
+    stream.on("data", (row) => {
+      results.push({
+        id: row.id.value,
+        nev: row.nev.value,
+        varos: row.varosNev.value,
+        tipus: row.tipus.value,
+      });
+    });
+    stream.on("end", () => res.json(results));
+    stream.on("error", (err) => {
+      console.error("SPARQL hiba az ajánlónál:", err);
+      res.status(500).json({ error: "Hiba az ajánló lekérdezése során." });
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Backend fut: http://localhost:${PORT}`));
