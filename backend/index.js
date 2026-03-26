@@ -171,28 +171,23 @@ app.get("/api/megyek", async (req, res) => {
 });
 
 // 8. Intelligens ajánló
-app.get("/api/ajanlo/:megye", async (req, res) => {
-  const { megye } = req.params;
-
+app.get("/api/ajanlo", async (req, res) => {
   const query = `
         ${PREFIXES}
-        SELECT DISTINCT ?id ?nev ?varosNev ?tipus WHERE {
-            ?varos :reszeAnnak+ :${megye} .
-            ?varos :nev ?varosNev .
+        SELECT DISTINCT ?id ?nev ?varosNev ?tipus ?leiras WHERE {
             ?id :talalhato ?varos .
+            ?varos :nev ?varosNev .
             ?id :nev ?nev .
+            OPTIONAL { ?id :leiras ?leiras }
+            
             ?id rdf:type ?typeIRI .
             ?typeIRI rdfs:subClassOf* :Helyszin .
-            FILTER (?typeIRI != <http://www.w3.org/2002/07/owl#NamedIndividual>)
-            FILTER (?typeIRI != :Helyszin) 
+            FILTER (?typeIRI != owl:NamedIndividual && ?typeIRI != :Helyszin && ?typeIRI != :Latnivalo && ?typeIRI != :Szolgaltatas)
             BIND(STRAFTER(STR(?typeIRI), "untitled-ontology-2/") AS ?tipus)
-            FILTER (?tipus IN ("Muzeum", "Muemlek", "Latnivalo"))
-            BIND(RAND() AS ?random)
         }
-        ORDER BY ?random 
+        ORDER BY RAND()
         LIMIT 3
     `;
-
   try {
     const stream = await client.query.select(query);
     const results = [];
@@ -200,17 +195,15 @@ app.get("/api/ajanlo/:megye", async (req, res) => {
       results.push({
         id: row.id.value,
         nev: row.nev.value,
+        leiras: row.leiras ? row.leiras.value : "",
         varos: row.varosNev.value,
         tipus: row.tipus.value,
       });
     });
     stream.on("end", () => res.json(results));
-    stream.on("error", (err) => {
-      console.error("SPARQL hiba az ajánlónál:", err);
-      res.status(500).json({ error: "Hiba a lekérdezés során." });
-    });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error(err);
+    res.status(500).json({ error: "Szerver hiba" });
   }
 });
 

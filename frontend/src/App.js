@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Sidebar from "./components/Sidebar";
+import InfoCard from "./components/InfoCard";
+import Modal from "./components/Modal";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -11,41 +13,14 @@ function App() {
   return (
     <div className="d-flex flex-column min-vh-100 bg-light">
       <Header />
-
       <main className="container-fluid py-4 px-4 flex-grow-1">
         <div className="row g-4">
-          {/* SIDEBAR */}
           <aside className="col-12 col-lg-3">
             <Sidebar onAdatFrissites={setHelyszinek} />
           </aside>
-
-          {/* TARTALOM (Kártyák) */}
           <section className="col-12 col-lg-9">
             {helyszinek.length > 0 ? (
-              <div className="row g-3">
-                {helyszinek.map((hely, index) => (
-                  <div key={index} className="col-md-6 col-xl-4">
-                    <div className="card h-100 border-0 shadow-sm hover-shadow transition">
-                      <div className="card-body">
-                        <div className="d-flex justify-content-between mb-2">
-                          <span className="badge bg-warning text-dark">
-                            {hely.tipus}
-                          </span>
-                          <small className="text-muted">📍 {hely.varos}</small>
-                        </div>
-                        <h5 className="fw-bold text-dark">{hely.nev}</h5>
-                        <p className="card-text text-muted small mt-2">
-                          {hely.leiras ||
-                            "Nincs elérhető leírás ehhez a helyszínhez."}
-                        </p>
-                        <button className="btn btn-outline-dark btn-sm w-100 mt-auto fw-bold">
-                          Részletek
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <InfoCard adatok={helyszinek} />
             ) : (
               <div className="h-100 d-flex align-items-center justify-content-center">
                 <div className="alert alert-info text-center shadow-sm py-5 px-5 rounded-4">
@@ -60,7 +35,7 @@ function App() {
           </section>
         </div>
       </main>
-
+      <Modal />
       <Footer />
     </div>
   );
