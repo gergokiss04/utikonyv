@@ -6,31 +6,29 @@ const Sidebar = ({ onAdatFrissites }) => {
   const [aktivMegye, setAktivMegye] = useState("");
   const [aktivKategoria, setAktivKategoria] = useState("Összes");
 
-  // 1. Megyék betöltése
   useEffect(() => {
     fetch("http://localhost:5000/api/megyek")
       .then((res) => res.json())
-      .then((data) => setMegyek(data))
-      .catch((err) => console.error("Hiba a megyék betöltésekor:", err));
+      .then((data) => {
+        setMegyek(data);
+        if (data.length > 0) setAktivMegye(data[0].id);
+      })
+      .catch((err) => console.error("Megyék hiba:", err));
   }, []);
 
-  // 2. Adatok lekérése a "Mindentudó" végpontról
   useEffect(() => {
     if (aktivMegye) {
       const cleanId = aktivMegye.split(/[#/]/).pop();
 
-      // Statisztika frissítése (alsó részhez)
       fetch(`http://localhost:5000/api/statisztika/${cleanId}`)
         .then((res) => res.json())
-        .then((data) => setStatisztika(Array.isArray(data) ? data : []));
+        .then((data) => setStatisztika(Array.isArray(data) ? data : []))
+        .catch((err) => console.error("Statisztika hiba:", err));
 
-      // A TE MINDENTUDÓ VÉGPONTOD HÍVÁSA
       fetch(`http://localhost:5000/api/helyszinek/${cleanId}`)
         .then((res) => res.json())
         .then((data) => {
           let megjelenitendo = data;
-
-          // Szűrés a frontenden, ha nem az "Összes" van kiválasztva
           if (aktivKategoria !== "Összes") {
             const katMap = {
               Múzeumok: "Muzeum",
@@ -41,25 +39,23 @@ const Sidebar = ({ onAdatFrissites }) => {
             const keresettTipus = katMap[aktivKategoria];
             megjelenitendo = data.filter((h) => h.tipus === keresettTipus);
           }
-
-          // Küldjük az App.js-nek a kész listát (legyen az 1 vagy 100 elem)
           onAdatFrissites(megjelenitendo);
-        })
-        .catch((err) => console.error("Hiba a helyszínek lekérésekor:", err));
+        });
     }
   }, [aktivMegye, aktivKategoria, onAdatFrissites]);
 
   return (
-    <div className="card shadow-sm border-0 bg-white rounded-3">
+    <div className="card shadow-sm border-0 bg-white rounded-3 overflow-hidden">
       <div
-        className="card-header fw-bold text-white py-3"
+        className="card-header fw-bold text-white py-3 text-center"
         style={{ backgroundColor: "#98863d" }}
       >
         📍 Vármegyék választása
       </div>
+
       <div
         className="list-group list-group-flush"
-        style={{ maxHeight: "300px", overflowY: "auto" }}
+        style={{ maxHeight: "250px", overflowY: "auto" }}
       >
         {megyek.map((m) => (
           <button
@@ -72,17 +68,16 @@ const Sidebar = ({ onAdatFrissites }) => {
         ))}
       </div>
 
-      {/* Kategória gombok */}
-      <div className="p-3 border-top bg-light">
-        <h6 className="fw-bold small text-muted text-uppercase mb-2 text-center">
-          Szűrés
+      <div className="p-3 border-top bg-light text-center">
+        <h6 className="fw-bold small text-muted text-uppercase mb-2">
+          Kategóriák
         </h6>
         <div className="btn-group-vertical w-100 shadow-sm">
           {["Összes", "Múzeumok", "Műemlékek", "Szállások", "Éttermek"].map(
             (kat) => (
               <button
                 key={kat}
-                className={`btn btn-sm text-center py-2 ${aktivKategoria === kat ? "btn-dark" : "btn-outline-dark bg-white text-dark"}`}
+                className={`btn btn-sm py-2 ${aktivKategoria === kat ? "btn-dark text-white" : "btn-outline-dark bg-white"}`}
                 onClick={() => setAktivKategoria(kat)}
               >
                 {kat}
@@ -92,10 +87,28 @@ const Sidebar = ({ onAdatFrissites }) => {
         </div>
       </div>
 
-      {/* Statisztika rész (ez nálad már jó) */}
       {aktivMegye && (
-        <div className="card-footer bg-white border-top p-3 text-center">
-          {/* ... statisztika renderelés ... */}
+        <div className="card-footer bg-white border-top p-3">
+          <h6 className="fw-bold small text-muted text-uppercase mb-2 text-center">
+            📊 Statisztika
+          </h6>
+          {statisztika.length > 0 ? (
+            statisztika.map((s, i) => (
+              <div
+                key={i}
+                className="d-flex justify-content-between small mb-1 border-bottom pb-1"
+              >
+                <span>{s.tipus}:</span>
+                <span className="badge bg-warning text-dark rounded-pill px-2">
+                  {s.db} db
+                </span>
+              </div>
+            ))
+          ) : (
+            <p className="small text-muted text-center mb-0 italic">
+              Nincs adat.
+            </p>
+          )}
         </div>
       )}
     </div>
