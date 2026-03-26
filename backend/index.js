@@ -141,14 +141,12 @@ app.get("/api/kategoria/:tipus", async (req, res) => {
   }
 });
 
-// 7. Vármegyék listázása (Sidebar-hoz)
-
+// 7. Vármegyék listázása
 app.get("/api/megyek", async (req, res) => {
   const query = `
         ${PREFIXES}
         SELECT DISTINCT ?id ?nev WHERE {
             ?id rdf:type :Varmegye .
-            :Varmegye rdfs:subClassOf :FoldrajziElhelyezkedes .
             ?id :nev ?nev .
         } ORDER BY ?nev
     `;
@@ -163,32 +161,35 @@ app.get("/api/megyek", async (req, res) => {
       });
     });
     stream.on("end", () => res.json(results));
+    stream.on("error", (err) => {
+      console.error("SPARQL hiba (megyek):", err);
+      res.status(500).json({ error: "Hiba a vármegyék lekérésekor." });
+    });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-//8. Intelligens ajánló
+// 8. Intelligens ajánló
 app.get("/api/ajanlo/:megye", async (req, res) => {
+  const { megye } = req.params;
+
   const query = `
         ${PREFIXES}
         SELECT DISTINCT ?id ?nev ?varosNev ?tipus WHERE {
-            ?varos :reszeAnnak+ :${req.params.megye} .
+            ?varos :reszeAnnak+ :${megye} .
             ?varos :nev ?varosNev .
-
             ?id :talalhato ?varos .
             ?id :nev ?nev .
-
             ?id rdf:type ?typeIRI .
             ?typeIRI rdfs:subClassOf* :Helyszin .
-
             FILTER (?typeIRI != <http://www.w3.org/2002/07/owl#NamedIndividual>)
             FILTER (?typeIRI != :Helyszin) 
-
             BIND(STRAFTER(STR(?typeIRI), "untitled-ontology-2/") AS ?tipus)
-            
             FILTER (?tipus IN ("Muzeum", "Muemlek", "Latnivalo"))
-        } 
+            BIND(RAND() AS ?random)
+        }
+        ORDER BY ?random 
         LIMIT 3
     `;
 
@@ -206,7 +207,7 @@ app.get("/api/ajanlo/:megye", async (req, res) => {
     stream.on("end", () => res.json(results));
     stream.on("error", (err) => {
       console.error("SPARQL hiba az ajánlónál:", err);
-      res.status(500).json({ error: "Hiba az ajánló lekérdezése során." });
+      res.status(500).json({ error: "Hiba a lekérdezés során." });
     });
   } catch (err) {
     res.status(500).json({ error: err.message });
