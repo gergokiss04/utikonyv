@@ -12,84 +12,88 @@
 #    Object Properties
 #################################################################
 
-###  http://www.pelda.hu/intelligens-utikonyv#reszeAnnak
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/reszeAnnak
 :reszeAnnak rdf:type owl:ObjectProperty ,
                      owl:TransitiveProperty ;
             rdfs:domain :FoldrajziElhelyezkedes ;
             rdfs:range :FoldrajziElhelyezkedes .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#talalhato
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/talalhato
 :talalhato rdf:type owl:ObjectProperty ;
            owl:inverseOf :vanHelyszine ;
            rdfs:domain :Helyszin ;
            rdfs:range :Telepules .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#vanHelyszine
-:vanHelyszine rdf:type owl:ObjectProperty .
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/vanHelyszine
+:vanHelyszine rdf:type owl:ObjectProperty ;
+              rdfs:domain :Telepules ;
+              rdfs:range :Helyszin .
 
 
 #################################################################
 #    Data properties
 #################################################################
 
-###  http://www.pelda.hu/intelligens-utikonyv#leiras
-:leiras rdf:type owl:DatatypeProperty .
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/leiras
+:leiras rdf:type owl:DatatypeProperty ;
+        rdfs:range xsd:string .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#nev
-:nev rdf:type owl:DatatypeProperty .
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/nev
+:nev rdf:type owl:DatatypeProperty ;
+     rdfs:range xsd:string .
 
 
 #################################################################
 #    Classes
 #################################################################
 
-###  http://www.pelda.hu/intelligens-utikonyv#Etterem
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Etterem
 :Etterem rdf:type owl:Class ;
          rdfs:subClassOf :Szolgaltatas .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#FoldrajziElhelyezkedes
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/FoldrajziElhelyezkedes
 :FoldrajziElhelyezkedes rdf:type owl:Class .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Helyszin
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Helyszin
 :Helyszin rdf:type owl:Class .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Latnivalo
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Latnivalo
 :Latnivalo rdf:type owl:Class ;
            rdfs:subClassOf :Helyszin .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Muemlek
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Muemlek
 :Muemlek rdf:type owl:Class ;
          rdfs:subClassOf :Latnivalo .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Muzeum
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Muzeum
 :Muzeum rdf:type owl:Class ;
         rdfs:subClassOf :Latnivalo .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Szallas
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Szallas
 :Szallas rdf:type owl:Class ;
          rdfs:subClassOf :Szolgaltatas .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Szolgaltatas
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Szolgaltatas
 :Szolgaltatas rdf:type owl:Class ;
               rdfs:subClassOf :Helyszin .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Telepules
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Telepules
 :Telepules rdf:type owl:Class ;
            rdfs:subClassOf :FoldrajziElhelyezkedes .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Varmegye
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Varmegye
 :Varmegye rdf:type owl:Class ;
           rdfs:subClassOf :FoldrajziElhelyezkedes .
 
@@ -98,20 +102,20 @@
 #    Individuals
 #################################################################
 
-###  http://www.pelda.hu/intelligens-utikonyv#Bacs_Kiskun_varmegye
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Bacs_Kiskun_varmegye
 :Bacs_Kiskun_varmegye rdf:type owl:NamedIndividual ,
                                :Varmegye ;
                       :nev "Bács-Kiskun vármegye" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Balassagyarmat
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Balassagyarmat
 :Balassagyarmat rdf:type owl:NamedIndividual ,
                          :Telepules ;
                 :reszeAnnak :Nograd_varmegye ;
                 :nev "Balassagyarmat" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Bambara_Hotel
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Bambara_Hotel
 :Bambara_Hotel rdf:type owl:NamedIndividual ,
                         :Szallas ;
                :talalhato :Felsotarkany ;
@@ -119,7 +123,7 @@
                :nev "Bambara Hotel" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Banyamuzeum
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Banyamuzeum
 :Banyamuzeum rdf:type owl:NamedIndividual ,
                       :Muzeum ;
              :talalhato :Salgotarjan ;
@@ -127,19 +131,19 @@
              :nev "Bányamúzeum" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Baranya_varmegye
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Baranya_varmegye
 :Baranya_varmegye rdf:type owl:NamedIndividual ,
                            :Varmegye ;
                   :nev "Baranya vármegye" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Bekes_varmegye
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Bekes_varmegye
 :Bekes_varmegye rdf:type owl:NamedIndividual ,
                          :Varmegye ;
                 :nev "Békés vármegye" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#BoriMami
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/BoriMami
 :BoriMami rdf:type owl:NamedIndividual ,
                    :Etterem ;
           :talalhato :Gyongyos ;
@@ -147,14 +151,13 @@
           :nev "BoriMami" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Borsod_Abauj_Zemplen_varmegye
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Borsod_Abauj_Zemplen_varmegye
 :Borsod_Abauj_Zemplen_varmegye rdf:type owl:NamedIndividual ,
                                         :Varmegye ;
-                               :nev "Borsod-Abaúj-Zemplén vármegye" ,
-                                    "Herman Ottó Múzeum" .
+                               :nev "Borsod-Abaúj-Zemplén vármegye" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Bunbano_Szent_Maria_Magdolna_Templom
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Bunbano_Szent_Maria_Magdolna_Templom
 :Bunbano_Szent_Maria_Magdolna_Templom rdf:type owl:NamedIndividual ,
                                                :Muemlek ;
                                       :talalhato :Felsotarkany ;
@@ -162,7 +165,7 @@
                                       :nev "Bűnbánó Szent Mária Magdolna Templom" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Castellum_Hotel
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Castellum_Hotel
 :Castellum_Hotel rdf:type owl:NamedIndividual ,
                           :Szallas ;
                  :talalhato :Holloko ;
@@ -170,7 +173,7 @@
                  :nev "Castellum Hotel" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Ciszterci_Monostor
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Ciszterci_Monostor
 :Ciszterci_Monostor rdf:type owl:NamedIndividual ,
                              :Muemlek ;
                     :talalhato :Paszto ;
@@ -178,13 +181,13 @@
                     :nev "Ciszterci Monostor" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Csongrad_Csanad_varmegye
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Csongrad_Csanad_varmegye
 :Csongrad_Csanad_varmegye rdf:type owl:NamedIndividual ,
                                    :Varmegye ;
                           :nev "Csongrád-Csanád vármegye" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Diosgyori_Var
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Diosgyori_Var
 :Diosgyori_Var rdf:type owl:NamedIndividual ,
                         :Muemlek ;
                :talalhato :Miskolc ;
@@ -192,14 +195,14 @@
                :nev "Diósgyőri Vár" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Edeleny
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Edeleny
 :Edeleny rdf:type owl:NamedIndividual ,
                   :Telepules ;
          :reszeAnnak :Borsod_Abauj_Zemplen_varmegye ;
          :nev "Edelény" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Edelenyi_Kastelysziget
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Edelenyi_Kastelysziget
 :Edelenyi_Kastelysziget rdf:type owl:NamedIndividual ,
                                  :Muemlek ;
                         :talalhato :Edeleny ;
@@ -207,7 +210,7 @@
                         :nev "Edelényi Kastélysziget" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Edelenyi_Vendeghaz
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Edelenyi_Vendeghaz
 :Edelenyi_Vendeghaz rdf:type owl:NamedIndividual ,
                              :Szallas ;
                     :talalhato :Edeleny ;
@@ -215,14 +218,14 @@
                     :nev "Edelényi Vendégház" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Eger
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Eger
 :Eger rdf:type owl:NamedIndividual ,
                :Telepules ;
       :reszeAnnak :Heves_varmegye ;
       :nev "Eger" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Egri_Var
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Egri_Var
 :Egri_Var rdf:type owl:NamedIndividual ,
                    :Muemlek ;
           :talalhato :Eger ;
@@ -230,7 +233,7 @@
           :nev "Egri Vár" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Evangelikus_Templom
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Evangelikus_Templom
 :Evangelikus_Templom rdf:type owl:NamedIndividual ,
                               :Muemlek ;
                      :talalhato :Balassagyarmat ;
@@ -238,7 +241,7 @@
                      :nev "Evangélikus Templom" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Fakanalas_Fogado
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Fakanalas_Fogado
 :Fakanalas_Fogado rdf:type owl:NamedIndividual ,
                            :Szallas ;
                   :talalhato :Paszto ;
@@ -246,7 +249,7 @@
                   :nev "Fakanalas Fogadó" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Falumuzeum
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Falumuzeum
 :Falumuzeum rdf:type owl:NamedIndividual ,
                      :Muzeum ;
             :talalhato :Holloko ;
@@ -254,13 +257,13 @@
             :nev "Falumúzeum" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Fejer_varmegye
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Fejer_varmegye
 :Fejer_varmegye rdf:type owl:NamedIndividual ,
                          :Varmegye ;
                 :nev "Fejér vármegye" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Fekete_Barany_Etterem
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Fekete_Barany_Etterem
 :Fekete_Barany_Etterem rdf:type owl:NamedIndividual ,
                                 :Etterem ;
                        :talalhato :Salgotarjan ;
@@ -268,14 +271,14 @@
                        :nev "Fekete Bárány Étterem" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Felsotarkany
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Felsotarkany
 :Felsotarkany rdf:type owl:NamedIndividual ,
                        :Telepules ;
               :reszeAnnak :Heves_varmegye ;
               :nev "Felsőtárkány" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Galcsik_Fogado
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Galcsik_Fogado
 :Galcsik_Fogado rdf:type owl:NamedIndividual ,
                          :Szallas ;
                 :talalhato :Salgotarjan ;
@@ -283,7 +286,7 @@
                 :nev "Galcsik Fogadó" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Grassalkovich_Kastely
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Grassalkovich_Kastely
 :Grassalkovich_Kastely rdf:type owl:NamedIndividual ,
                                 :Muemlek ;
                        :talalhato :Hatvan ;
@@ -291,20 +294,20 @@
                        :nev "Grassalkovich Kastély" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Gyongyos
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Gyongyos
 :Gyongyos rdf:type owl:NamedIndividual ,
                    :Telepules ;
           :reszeAnnak :Heves_varmegye ;
           :nev "Gyöngyös" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Gyor_Moson_Sopron_varmegye
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Gyor_Moson_Sopron_varmegye
 :Gyor_Moson_Sopron_varmegye rdf:type owl:NamedIndividual ,
                                      :Varmegye ;
                             :nev "Győr-Moson-Sopron vármegye" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Hadas_Varosresz
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Hadas_Varosresz
 :Hadas_Varosresz rdf:type owl:NamedIndividual ,
                           :Muemlek ;
                  :talalhato :Mezokovesd ;
@@ -312,20 +315,20 @@
                  :nev "Hadas Városrész" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Hajdu_Bihar_varmegye
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Hajdu_Bihar_varmegye
 :Hajdu_Bihar_varmegye rdf:type owl:NamedIndividual ,
                                :Varmegye ;
                       :nev "Hajdú-Bihar vármegye" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Hatvan
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Hatvan
 :Hatvan rdf:type owl:NamedIndividual ,
                  :Telepules ;
         :reszeAnnak :Heves_varmegye ;
         :nev "Hatvan" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Herman_Otto_Muzeum
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Herman_Otto_Muzeum
 :Herman_Otto_Muzeum rdf:type owl:NamedIndividual ,
                              :Muzeum ;
                     :talalhato :Miskolc ;
@@ -333,20 +336,20 @@
                     :nev "Herman Ottó Múzeum" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Heves_varmegye
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Heves_varmegye
 :Heves_varmegye rdf:type owl:NamedIndividual ,
                          :Varmegye ;
                 :nev "Heves vármegye" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Holloko
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Holloko
 :Holloko rdf:type owl:NamedIndividual ,
                   :Telepules ;
          :reszeAnnak :Nograd_varmegye ;
          :nev "Hollókő" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Hollokoi_Var
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Hollokoi_Var
 :Hollokoi_Var rdf:type owl:NamedIndividual ,
                        :Muemlek ;
               :talalhato :Holloko ;
@@ -354,7 +357,7 @@
               :nev "Hollókői Vár" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Hotel_Balneo
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Hotel_Balneo
 :Hotel_Balneo rdf:type owl:NamedIndividual ,
                        :Szallas ;
               :talalhato :Mezokovesd ;
@@ -362,7 +365,7 @@
               :nev "Hotel Balneo" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Hotel_Eger_Park
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Hotel_Eger_Park
 :Hotel_Eger_Park rdf:type owl:NamedIndividual ,
                           :Szallas ;
                  :talalhato :Eger ;
@@ -370,7 +373,7 @@
                  :nev "Hotel Eger Park" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Hotel_Grassalkovich
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Hotel_Grassalkovich
 :Hotel_Grassalkovich rdf:type owl:NamedIndividual ,
                               :Szallas ;
                      :talalhato :Hatvan ;
@@ -378,7 +381,7 @@
                      :nev "Hotel Grassalkovich" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Hotel_Varkastely
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Hotel_Varkastely
 :Hotel_Varkastely rdf:type owl:NamedIndividual ,
                            :Szallas ;
                   :talalhato :Szerencs ;
@@ -386,7 +389,7 @@
                   :nev "Hotel Várkastély" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Ipoly_Hotel
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Ipoly_Hotel
 :Ipoly_Hotel rdf:type owl:NamedIndividual ,
                       :Szallas ;
              :talalhato :Balassagyarmat ;
@@ -394,13 +397,13 @@
              :nev "Ipoly Hotel" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Jasz_Nagykun_Szolnok_varmegye
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Jasz_Nagykun_Szolnok_varmegye
 :Jasz_Nagykun_Szolnok_varmegye rdf:type owl:NamedIndividual ,
                                         :Varmegye ;
                                :nev "Jász-Nagykun-Szolnok vármegye" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Kardok_Haza
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Kardok_Haza
 :Kardok_Haza rdf:type owl:NamedIndividual ,
                       :Muzeum ;
              :talalhato :Felsotarkany ;
@@ -408,7 +411,7 @@
              :nev "Kardok Háza" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Kastely_Kert_Etterem
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Kastely_Kert_Etterem
 :Kastely_Kert_Etterem rdf:type owl:NamedIndividual ,
                                :Etterem ;
                       :talalhato :Edeleny ;
@@ -416,7 +419,7 @@
                       :nev "Kastély Kert Étterem" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Ket_Diofa_Biszto
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Ket_Diofa_Biszto
 :Ket_Diofa_Biszto rdf:type owl:NamedIndividual ,
                            :Etterem ;
                   :talalhato :Felsotarkany ;
@@ -424,13 +427,13 @@
                   :nev "Két Diófa Bisztró" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Komarom_Esztergom_varmegye
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Komarom_Esztergom_varmegye
 :Komarom_Esztergom_varmegye rdf:type owl:NamedIndividual ,
                                      :Varmegye ;
                             :nev "Komárom-Esztergom vármegye" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Kopcsik_Marcipania
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Kopcsik_Marcipania
 :Kopcsik_Marcipania rdf:type owl:NamedIndividual ,
                              :Muzeum ;
                     :talalhato :Eger ;
@@ -438,7 +441,7 @@
                     :nev "Kopcsik Marcipánia" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Lhuillier_Kastely_Muzeum
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Lhuillier_Kastely_Muzeum
 :Lhuillier_Kastely_Muzeum rdf:type owl:NamedIndividual ,
                                    :Muzeum ;
                           :talalhato :Edeleny ;
@@ -446,7 +449,7 @@
                           :nev "L'huillier Kastély Múzeum" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Lifestyle_Hotel_Matra
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Lifestyle_Hotel_Matra
 :Lifestyle_Hotel_Matra rdf:type owl:NamedIndividual ,
                                 :Szallas ;
                        :talalhato :Gyongyos ;
@@ -454,7 +457,7 @@
                        :nev "Lifestyle Hotel Mátra" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Macok_Bisztro
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Macok_Bisztro
 :Macok_Bisztro rdf:type owl:NamedIndividual ,
                         :Etterem ;
                :talalhato :Eger ;
@@ -462,7 +465,7 @@
                :nev "Macok Bisztró" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Matra_Muzeum
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Matra_Muzeum
 :Matra_Muzeum rdf:type owl:NamedIndividual ,
                        :Muzeum ;
               :talalhato :Gyongyos ;
@@ -470,7 +473,7 @@
               :nev "Mátra Múzeum" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Matyo_Muzeum
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Matyo_Muzeum
 :Matyo_Muzeum rdf:type owl:NamedIndividual ,
                        :Muzeum ;
               :talalhato :Mezokovesd ;
@@ -478,21 +481,21 @@
               :nev "Matyó Múzeum" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Mezokovesd
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Mezokovesd
 :Mezokovesd rdf:type owl:NamedIndividual ,
                      :Telepules ;
             :reszeAnnak :Borsod_Abauj_Zemplen_varmegye ;
             :nev "Mezőkövesd" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Miskolc
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Miskolc
 :Miskolc rdf:type owl:NamedIndividual ,
                   :Telepules ;
          :reszeAnnak :Borsod_Abauj_Zemplen_varmegye ;
          :nev "Miskolc" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Muskatli_Vendeglo
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Muskatli_Vendeglo
 :Muskatli_Vendeglo rdf:type owl:NamedIndividual ,
                             :Etterem ;
                    :talalhato :Holloko ;
@@ -500,13 +503,13 @@
                    :nev "Muskátli Vendéglő" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Nograd_varmegye
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Nograd_varmegye
 :Nograd_varmegye rdf:type owl:NamedIndividual ,
                           :Varmegye ;
                  :nev "Nógrád vármegye" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Paloc_Muzeum
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Paloc_Muzeum
 :Paloc_Muzeum rdf:type owl:NamedIndividual ,
                        :Muzeum ;
               :talalhato :Balassagyarmat ;
@@ -514,7 +517,7 @@
               :nev "Palóc Múzeum" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Palota_Szallo
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Palota_Szallo
 :Palota_Szallo rdf:type owl:NamedIndividual ,
                         :Szallas ;
                :talalhato :Miskolc ;
@@ -522,14 +525,14 @@
                :nev "Palota Szálló" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Paszto
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Paszto
 :Paszto rdf:type owl:NamedIndividual ,
                  :Telepules ;
         :reszeAnnak :Nograd_varmegye ;
         :nev "Pásztó" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Pasztoi_Muzeum
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Pasztoi_Muzeum
 :Pasztoi_Muzeum rdf:type owl:NamedIndividual ,
                          :Muzeum ;
                 :talalhato :Paszto ;
@@ -537,13 +540,13 @@
                 :nev "Pásztói Múzeum" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Pest_varmegye
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Pest_varmegye
 :Pest_varmegye rdf:type owl:NamedIndividual ,
                         :Varmegye ;
                :nev "Pest vármegye" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Romkert_Bisztro
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Romkert_Bisztro
 :Romkert_Bisztro rdf:type owl:NamedIndividual ,
                           :Etterem ;
                  :talalhato :Paszto ;
@@ -551,7 +554,7 @@
                  :nev "Romkert Bisztró" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Rozsa_Etterem
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Rozsa_Etterem
 :Rozsa_Etterem rdf:type owl:NamedIndividual ,
                         :Etterem ;
                :talalhato :Mezokovesd ;
@@ -559,7 +562,7 @@
                :nev "Rózsa Étterem" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Salgo_vara
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Salgo_vara
 :Salgo_vara rdf:type owl:NamedIndividual ,
                      :Muemlek ;
             :talalhato :Salgotarjan ;
@@ -567,20 +570,20 @@
             :nev "Salgó vára" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Salgotarjan
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Salgotarjan
 :Salgotarjan rdf:type owl:NamedIndividual ,
                       :Telepules ;
              :reszeAnnak :Nograd_varmegye ;
              :nev "Salgótarján" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Somogy_varmegye
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Somogy_varmegye
 :Somogy_varmegye rdf:type owl:NamedIndividual ,
                           :Varmegye ;
                  :nev "Somogy vármegye" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Svejk_Vendeglo
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Svejk_Vendeglo
 :Svejk_Vendeglo rdf:type owl:NamedIndividual ,
                          :Etterem ;
                 :talalhato :Balassagyarmat ;
@@ -588,13 +591,13 @@
                 :nev "Svejk Vendéglő" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Szabolcs_Szatmar_Bereg_varmegye
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Szabolcs_Szatmar_Bereg_varmegye
 :Szabolcs_Szatmar_Bereg_varmegye rdf:type owl:NamedIndividual ,
                                           :Varmegye ;
                                  :nev "Szabolcs-Szatmár-Bereg vármegye" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Szechenyi_Zsigmond_Vadaszati_Muzeum
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Szechenyi_Zsigmond_Vadaszati_Muzeum
 :Szechenyi_Zsigmond_Vadaszati_Muzeum rdf:type owl:NamedIndividual ,
                                               :Muzeum ;
                                      :talalhato :Hatvan ;
@@ -602,7 +605,7 @@
                                      :nev "Széchenyi Zsigmond Vadászati Múzeum" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Szent_Bertalan_Templom
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Szent_Bertalan_Templom
 :Szent_Bertalan_Templom rdf:type owl:NamedIndividual ,
                                  :Muemlek ;
                         :talalhato :Gyongyos ;
@@ -610,14 +613,14 @@
                         :nev "Szent Bertalan Templom" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Szerencs
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Szerencs
 :Szerencs rdf:type owl:NamedIndividual ,
                    :Telepules ;
           :reszeAnnak :Borsod_Abauj_Zemplen_varmegye ;
           :nev "Szerencs" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Szerencsi_Var
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Szerencsi_Var
 :Szerencsi_Var rdf:type owl:NamedIndividual ,
                         :Muemlek ;
                :talalhato :Szerencs ;
@@ -625,13 +628,13 @@
                :nev "Szerencsi vár" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Tolna_varmegye
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Tolna_varmegye
 :Tolna_varmegye rdf:type owl:NamedIndividual ,
                          :Varmegye ;
                 :nev "Tolna vármegye" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Udvarhaz_Vendeglo
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Udvarhaz_Vendeglo
 :Udvarhaz_Vendeglo rdf:type owl:NamedIndividual ,
                             :Etterem ;
                    :talalhato :Hatvan ;
@@ -639,7 +642,7 @@
                    :nev "Udvarház Vendéglő" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Var_Etterem
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Var_Etterem
 :Var_Etterem rdf:type owl:NamedIndividual ,
                       :Etterem ;
              :talalhato :Szerencs ;
@@ -647,13 +650,13 @@
              :nev "Vár Étterem" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Vas_varmegye
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Vas_varmegye
 :Vas_varmegye rdf:type owl:NamedIndividual ,
                        :Varmegye ;
               :nev "Vas vármegye" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Vegallomas_Bisztro
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Vegallomas_Bisztro
 :Vegallomas_Bisztro rdf:type owl:NamedIndividual ,
                              :Etterem ;
                     :talalhato :Miskolc ;
@@ -661,19 +664,19 @@
                     :nev "Végállomás Bisztró" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Veszprem_varmegye
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Veszprem_varmegye
 :Veszprem_varmegye rdf:type owl:NamedIndividual ,
                             :Varmegye ;
                    :nev "Veszprém vármegye" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Zala_varmegye
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Zala_varmegye
 :Zala_varmegye rdf:type owl:NamedIndividual ,
                         :Varmegye ;
                :nev "Zala vármegye" .
 
 
-###  http://www.pelda.hu/intelligens-utikonyv#Zempleni_Muzeum
+###  http://www.semanticweb.org/motor/ontologies/2026/1/untitled-ontology-2/Zempleni_Muzeum
 :Zempleni_Muzeum rdf:type owl:NamedIndividual ,
                           :Muzeum ;
                  :talalhato :Szerencs ;
