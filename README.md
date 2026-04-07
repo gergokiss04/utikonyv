@@ -39,9 +39,11 @@ A fenti kék linkekre kattintva az összes szükséges telepítő elérhető. A 
 cd backend
 npm install
 node index.js
+```
 
 **Frontend:**
 ```bash
 cd frontend
 npm install
 npm start
+```
