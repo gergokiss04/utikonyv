@@ -9,13 +9,39 @@ A szoftver különlegessége a **szemantikus lekérdezésekben** rejlik, amelyek
 
 ---
 
-## 🛠️ Felhasznált technológiák
+## Felhasznált technológiák
 
 * **Backend:** Node.js + Express.js
 * **Frontend:** React
 
-## 💻 Felhasznált szoftverek
+## Felhasznált szoftverek
 
 * **Ontológia:** [Protégé](https://protege.stanford.edu/)
 * **Adattár (Triple Store):** [GraphDB](https://graphdb.ontotext.com/)
-* **Fejlesztő környezet:** Visual Studio Code
+* **Fejlesztő környezet:** [Visual Studio Code](https://code.visualstudio.com/)
+
+---
+
+## 🚀 Telepítési útmutató
+
+### Szoftverek beszerzése
+A fenti kék linkekre kattintva az összes szükséges telepítő elérhető. A fejlesztői környezet (VS Code) gyorsan, néhány kattintással telepíthető.
+
+### Adattár (Triple Store) beállítása
+1. Telepítsd a **GraphDB** ingyenes verzióját (regisztráció után használható).
+2. Hozz létre egy új **Repository**-t.
+3. Importáld be az `Ontology` mappában található `.ttl` kiterjesztésű fájlt.
+
+### Alkalmazás indítása
+
+**Backend:**
+```bash
+cd backend
+npm install
+node index.js
+
+**Frontend:**
+```bash
+cd frontend
+npm install
+npm start
