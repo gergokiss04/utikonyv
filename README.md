@@ -22,7 +22,7 @@ A szoftver különlegessége a **szemantikus lekérdezésekben** rejlik, amelyek
 
 ---
 
-## 🚀 Telepítési útmutató
+##  Telepítési útmutató
 
 ### Szoftverek beszerzése
 A fenti kék linkekre kattintva az összes szükséges telepítő elérhető. A fejlesztői környezet (VS Code) gyorsan, néhány kattintással telepíthető.
