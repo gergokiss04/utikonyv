@@ -170,79 +170,43 @@ app.get("/api/megyek", async (req, res) => {
   }
 });
 
-// 8. Véletlen ajánló
-app.get("/api/ajanlo", async (req, res) => {
-  const query = `
-        ${PREFIXES}
-        SELECT DISTINCT ?id ?nev ?varosNev ?tipus ?leiras WHERE {
-            ?id :talalhato ?varos .
-            ?varos :nev ?varosNev .
-            ?id :nev ?nev .
-            OPTIONAL { ?id :leiras ?leiras }
-            
-            ?id rdf:type ?typeIRI .
-            ?typeIRI rdfs:subClassOf* :Helyszin .
-            FILTER (?typeIRI != owl:NamedIndividual && ?typeIRI != :Helyszin && ?typeIRI != :Latnivalo && ?typeIRI != :Szolgaltatas)
-            BIND(STRAFTER(STR(?typeIRI), "untitled-ontology-2/") AS ?tipus)
-        }
-        ORDER BY RAND()
-        LIMIT 3
-    `;
-  try {
-    const stream = await client.query.select(query);
-    const results = [];
-    stream.on("data", (row) => {
-      results.push({
-        id: row.id.value,
-        nev: row.nev.value,
-        leiras: row.leiras ? row.leiras.value : "",
-        varos: row.varosNev.value,
-        tipus: row.tipus.value,
-      });
-    });
-    stream.on("end", () => res.json(results));
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Szerver hiba" });
-  }
-});
-
-//9. Okos ajánló Szemantikus következtetéssel
+//8. Okos ajánló Szemantikus következtetéssel
 
 app.get("/api/okos-ajanlo/:helyszinId", async (req, res) => {
   const { helyszinId } = req.params;
 
   const query = `
         ${PREFIXES}
-        SELECT DISTINCT ?id ?nev ?varosNev ?megyeNev ?tipus ?miert WHERE {
-            :${helyszinId} rdf:type ?kozosTipus .
-            :${helyszinId} :talalhato ?eredetiVaros .
-            ?eredetiVaros :reszeAnnak ?eredetiMegye .
-            
-            {
-                ?id rdf:type ?kozosTipus .
-                ?id :talalhato ?masikVaros .
-                ?masikVaros :reszeAnnak ?masikMegye .
-                ?masikMegye :nev ?megyeNev .
-                FILTER(?masikMegye != ?eredetiMegye)
-                BIND(CONCAT("Hasonló látnivaló található: ", ?megyeNev) AS ?miert)
-            }
-            UNION
-            {
-                ?id :talalhato ?eredetiVaros .
-                ?id rdf:type ?masikTipus .
-                FILTER(?masikTipus != ?kozosTipus)
-                BIND("Más szolgáltatás is elérhető a közelben (ugyanaz a település)" AS ?miert)
-            }
-
-            ?id :nev ?nev .
-            ?id :talalhato ?v . ?v :nev ?varosNev .
-            ?id rdf:type ?typeIRI .
-            FILTER (?typeIRI != owl:NamedIndividual && ?typeIRI != :Helyszin)
-            BIND(STRAFTER(STR(?typeIRI), "untitled-ontology-2/") AS ?tipus)
-        }
-        ORDER BY RAND()
-        LIMIT 3
+SELECT DISTINCT ?id ?nev ?varosNev ?megyeNev ?tipus ?miert WHERE {
+    :${helyszinId} rdf:type ?kozosTipus .
+    FILTER (?kozosTipus != owl:NamedIndividual && ?kozosTipus != :Helyszin)
+    
+    :${helyszinId} :talalhato ?eredetiVaros .
+    ?eredetiVaros :reszeAnnak ?eredetiMegye . 
+    {
+        ?id rdf:type ?kozosTipus .
+        ?id :talalhato ?kozeliVaros .
+        ?kozeliVaros :reszeAnnak ?eredetiMegye .
+        FILTER(?id != :${helyszinId})
+        BIND("Hasonló tevékenység ebben a vármegyében" AS ?miert)
+    }
+    UNION
+    {
+        ?id :talalhato ?eredetiVaros .
+        ?id rdf:type ?masikTipus .
+        FILTER(?id != :${helyszinId})
+        FILTER(?masikTipus != ?kozosTipus && ?masikTipus != owl:NamedIndividual && ?masikTipus != :Helyszin)
+        BIND("Érdemes lehet megnézni, ha itt jár" AS ?miert)
+    }
+    ?id :nev ?nev .
+    ?id :talalhato ?v . ?v :nev ?varosNev .
+    
+    ?id rdf:type ?typeIRI .
+    FILTER (?typeIRI != owl:NamedIndividual && ?typeIRI != :Helyszin)
+    BIND(STRAFTER(STR(?typeIRI), "untitled-ontology-2/") AS ?tipus)
+}
+ORDER BY RAND()
+LIMIT 3
     `;
   try {
     const stream = await client.query.select(query);
