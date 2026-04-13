@@ -1,33 +1,18 @@
-import React, { useState, useEffect, useRef } from "react";
-import * as bootstrap from "bootstrap";
+import React, { useState, useEffect } from "react";
 
 const IntelligenceModal = ({ helyszin, onClose }) => {
   const [okosAjanlatok, setOkosAjanlatok] = useState([]);
   const [loading, setLoading] = useState(false);
-  const modalRef = useRef(null);
-  const modalInstance = useRef(null);
 
   useEffect(() => {
-    if (modalRef.current) {
-      modalInstance.current = new bootstrap.Modal(modalRef.current, {
-        backdrop: true,
-      });
+    if (!helyszin) {
+      setOkosAjanlatok([]);
+      return;
     }
-  }, []);
-
-  useEffect(() => {
-    if (!modalInstance.current) return;
-    if (helyszin) {
-      modalInstance.current.show();
-    } else {
-      modalInstance.current.hide();
-    }
-  }, [helyszin]);
-
-  useEffect(() => {
-    if (!helyszin) return;
 
     setLoading(true);
+    setOkosAjanlatok([]);
+
     const cleanId = helyszin.id.split(/[#/]/).pop();
 
     fetch(`http://localhost:5000/api/okos-ajanlo/${cleanId}`)
@@ -36,96 +21,91 @@ const IntelligenceModal = ({ helyszin, onClose }) => {
         setOkosAjanlatok(data);
         setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch((err) => {
+        console.error("Ajánló hiba:", err);
+        setLoading(false);
+      });
   }, [helyszin]);
 
-  useEffect(() => {
-    return () => {
-      modalInstance.current?.dispose();
-    };
-  }, []);
+  if (!helyszin) return null;
 
   return (
-    <div ref={modalRef} className="modal fade" tabIndex="-1">
+    <div
+      className="modal show d-block modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title-id"
+    >
       <div className="modal-dialog modal-lg modal-dialog-centered">
-        <div className="modal-content rounded-4 overflow-hidden border-0 shadow">
+        <div className="modal-content rounded-4 overflow-hidden border-0 shadow-lg">
           <div className="modal-header bg-dark text-white border-0">
             <div>
-              <h5 className="modal-title fw-bold">
-                {helyszin?.nev || "Betöltés..."}
+              <h5 className="modal-title fw-bold" id="modal-title-id">
+                {helyszin.nev}
               </h5>
-              <small style={{ color: "#ffc107" }}>
+              <small className="text-warning">
                 Intelligens Helyszín-elemző
               </small>
             </div>
-            <button className="btn-close btn-close-white" onClick={onClose} />
+            <button
+              className="btn-close btn-close-white"
+              onClick={onClose}
+              aria-label="Bezárás"
+            />
           </div>
 
           <div className="modal-body p-0">
             <div className="row g-0">
               <div className="col-md-7 p-4 bg-white">
-                <span className="badge bg-warning text-dark mb-3">
-                  {helyszin?.tipus || "Helyszín"}
+                <span className="badge bg-warning text-dark mb-2">
+                  {helyszin.tipus}
                 </span>
-                <p className="text-muted mb-4">Település: {helyszin?.varos}</p>
-
-                <h6 className="fw-bold border-bottom pb-2 mb-3 small">
-                  LEÍRÁS
-                </h6>
-                <p
-                  className="text-secondary"
-                  style={{ fontSize: "0.9rem", lineHeight: "1.5" }}
-                >
-                  {helyszin?.leiras ||
+                <p className="text-muted small mb-3">📍 {helyszin.varos}</p>
+                <h6 className="fw-bold border-bottom pb-2 mb-3">Leírás</h6>
+                <p className="text-secondary" style={{ fontSize: "12px" }}>
+                  {helyszin.leiras ||
                     "Ehhez a helyszínhez nem tartozik leírás."}
                 </p>
               </div>
 
               <div className="col-md-5 p-4 bg-light border-start">
-                <h6 className="fw-bold mb-4 small">Szemantikus ajánlatok:</h6>
+                <h6 className="fw-bold mb-3 small">Szemantikus ajánlatok:</h6>
+
                 {loading ? (
-                  <p className="text-center py-4">Ajánlatok keresése...</p>
+                  <div className="text-center py-4">
+                    <div
+                      className="spinner-border spinner-border-sm text-warning me-2"
+                      role="status"
+                    ></div>
+                    <span className="small">Elemzés folyamatban!</span>
+                  </div>
                 ) : okosAjanlatok.length > 0 ? (
-                  <div className="d-flex flex-column gap-3">
+                  <div className="d-flex flex-column gap-2">
                     {okosAjanlatok.map((a, i) => (
                       <div
                         key={i}
-                        className="card border-0 shadow-sm p-3 bg-white"
+                        className="card border-0 shadow-sm p-3 bg-white hover-shadow transition"
                       >
-                        <strong
-                          className="d-block mb-1"
-                          style={{ fontSize: "0.85rem" }}
-                        >
-                          {a.nev}
-                        </strong>
+                        <strong className="d-block mb-1 small">{a.nev}</strong>
                         <p
-                          className="text-primary fw-bold mb-2"
-                          style={{ fontSize: "0.75rem" }}
+                          className="text-primary fw-bold mb-1"
+                          style={{ fontSize: "12px" }}
                         >
                           {a.miert}
                         </p>
-
-                        <div className="d-flex justify-content-between align-items-center mt-auto">
-                          <small
-                            className="text-muted"
-                            style={{ fontSize: "0.65rem" }}
-                          >
-                            📍 {a.varos}
-                          </small>
-                          <span
-                            className="badge bg-light text-dark border small"
-                            style={{ fontSize: "0.6rem" }}
-                          >
-                            {a.tipus}
-                          </span>
-                        </div>
+                        <small
+                          className="text-muted"
+                          style={{ fontSize: "12px" }}
+                        >
+                          📍 {a.varos}
+                        </small>
                       </div>
                     ))}
                   </div>
                 ) : (
-                  <p className="text-muted small italic">
-                    Nincs elérhető ajánlat.
-                  </p>
+                  <div className="alert alert-info py-2 px-3 small">
+                    Nincs elérhető ajánlat ehhez a helyszínhez.
+                  </div>
                 )}
               </div>
             </div>

@@ -27,3 +27,8 @@
 .header-footer-color{
   background-color: #98863d;
 }
+
+.modal{
+  background-color: rgba(0,0,0,0.6);
+  z-index: 1050;
+}

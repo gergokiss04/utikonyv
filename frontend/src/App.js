@@ -24,10 +24,19 @@ function App() {
               <InfoCard adatok={helyszinek} onValasztas={setKivalasztottHely} />
             ) : (
               <div className="h-100 d-flex align-items-center justify-content-center">
-                <div className="alert alert-info text-center shadow-sm py-5 px-5 rounded-4">
-                  <i className="bi bi-search fs-1 d-block mb-3"></i>
-                  <h4>Fedezd fel Magyarország kincseit!</h4>
-                  <p className="mb-0">
+                <div className="alert alert-info text-center shadow-sm py-5 px-5 rounded-4 border-0 bg-white">
+                  <span
+                    className="d-block mb-3"
+                    style={{ fontSize: "5px" }}
+                    role="img"
+                    aria-label="térkép"
+                  >
+                    🗺️
+                  </span>
+                  <h4 className="fw-bold text-dark">
+                    Fedezd fel Magyarország kincseit!
+                  </h4>
+                  <p className="text-muted mb-0">
                     Válassz egy vármegyét a bal oldali listából a kezdéshez.
                   </p>
                 </div>
@@ -36,10 +45,12 @@ function App() {
           </section>
         </div>
       </main>
-      <IntelligenceModal
-        helyszin={kivalasztottHely}
-        onClose={() => setKivalasztottHely(null)}
-      />
+      {kivalasztottHely && (
+        <IntelligenceModal
+          helyszin={kivalasztottHely}
+          onClose={() => setKivalasztottHely(null)}
+        />
+      )}
       <Footer />
     </div>
   );
