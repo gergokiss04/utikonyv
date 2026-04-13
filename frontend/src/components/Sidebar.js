@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
 
+const kategoria = {
+  Múzeumok: "Muzeum",
+  Műemlékek: "Muemlek",
+  Szállások: "Szallas",
+  Éttermek: "Etterem",
+};
+
 const Sidebar = ({ onAdatFrissites }) => {
   const [megyek, setMegyek] = useState([]);
   const [statisztika, setStatisztika] = useState([]);
@@ -30,13 +37,7 @@ const Sidebar = ({ onAdatFrissites }) => {
         .then((data) => {
           let megjelenitendo = data;
           if (aktivKategoria !== "Összes") {
-            const katMap = {
-              Múzeumok: "Muzeum",
-              Műemlékek: "Muemlek",
-              Szállások: "Szallas",
-              Éttermek: "Etterem",
-            };
-            const keresettTipus = katMap[aktivKategoria];
+            const keresettTipus = kategoria[aktivKategoria];
             megjelenitendo = data.filter((h) => h.tipus === keresettTipus);
           }
           onAdatFrissites(megjelenitendo);
@@ -46,16 +47,13 @@ const Sidebar = ({ onAdatFrissites }) => {
 
   return (
     <div className="card shadow-sm border-0 bg-white rounded-3 overflow-hidden">
-      <div
-        className="card-header fw-bold text-white py-3 text-center"
-        style={{ backgroundColor: "#98863d" }}
-      >
+      <div className="card-header fw-bold text-white py-3 text-center header-footer-color">
         📍 Vármegyék választása
       </div>
 
       <div
         className="list-group list-group-flush"
-        style={{ maxHeight: "250px", overflowY: "auto" }}
+        style={{ maxHeight: "250px", overflowY: "auto", paddingBottom: "10px" }}
       >
         {megyek.map((m) => (
           <button

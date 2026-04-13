@@ -199,9 +199,10 @@ SELECT DISTINCT ?id ?nev ?varosNev ?megyeNev ?tipus ?miert WHERE {
         BIND("Érdemes lehet megnézni, ha itt jár" AS ?miert)
     }
     ?id :nev ?nev .
-    ?id :talalhato ?v . ?v :nev ?varosNev .
-    
+    ?id :talalhato ?varos . 
+    ?varos :nev ?varosNev .    
     ?id rdf:type ?typeIRI .
+
     FILTER (?typeIRI != owl:NamedIndividual && ?typeIRI != :Helyszin)
     BIND(STRAFTER(STR(?typeIRI), "untitled-ontology-2/") AS ?tipus)
 }

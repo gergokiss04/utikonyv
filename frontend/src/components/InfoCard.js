@@ -1,8 +1,10 @@
+import React from "react";
+
 const InfoCard = ({ adatok, onValasztas }) => {
   return (
     <div className="row g-3">
-      {adatok.map((hely, index) => (
-        <div key={index} className="col-md-6 col-xl-4">
+      {adatok.map((hely) => (
+        <div key={hely.id} className="col-md-6 col-xl-4">
           <div className="card h-100 border-0 shadow-sm">
             <div className="card-body d-flex flex-column">
               <div className="d-flex justify-content-between mb-2">
