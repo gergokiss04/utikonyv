@@ -27,7 +27,7 @@ function App() {
                 <div className="alert alert-info text-center shadow-sm py-5 px-5 rounded-4 border-0 bg-white">
                   <span
                     className="d-block mb-3"
-                    style={{ fontSize: "5px" }}
+                    style={{ fontSize: "100px" }}
                     role="img"
                     aria-label="térkép"
                   >
