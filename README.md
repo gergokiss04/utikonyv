@@ -13,6 +13,7 @@ A szoftver különlegessége a **szemantikus lekérdezésekben** rejlik, amelyek
 
 * **Backend:** Node.js + Express.js
 * **Frontend:** React
+* **CSS:** Bootstrap 5.3.8
 
 ## Felhasznált szoftverek
 
